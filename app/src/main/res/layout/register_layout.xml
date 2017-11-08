@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/phone_layout"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_card"
+            android:layout_marginTop="20dp"
+            android:layout_height="70dp">
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/phone_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="@string/phone"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                app:bootstrapBrand="primary"/>
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/edit_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:inputType="phone"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:maxLength="11"
+                android:layout_toEndOf="@id/phone_label"
+                android:layout_toRightOf="@id/phone_label"
+                app:bootstrapBrand="info"
+                app:bootstrapSize="md"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/password_layout"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_card"
+            android:layout_height="70dp"
+            android:layout_below="@id/phone_layout">
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/password_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="@string/password"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                app:bootstrapBrand="primary"/>
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/edit_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/password_label"
+                android:layout_toRightOf="@id/password_label"
+                app:bootstrapBrand="info"
+                app:bootstrapSize="md"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/confirm_password_layout"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_card"
+            android:layout_height="70dp"
+            android:layout_below="@id/password_layout">
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/confirm_password_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="@string/confirm_password"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                app:bootstrapBrand="primary"/>
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/edit_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/confirm_password_label"
+                android:layout_toRightOf="@id/confirm_password_label"
+                app:bootstrapBrand="info"
+                app:bootstrapSize="md"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/username_layout"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_card"
+            android:layout_height="70dp"
+            android:layout_below="@id/confirm_password_layout">
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/username_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="@string/username"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                app:bootstrapBrand="primary"/>
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/edit_username"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/username_label"
+                android:layout_toRightOf="@id/username_label"
+                app:bootstrapBrand="info"
+                app:bootstrapSize="md"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/name_layout"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_card"
+            android:layout_height="70dp"
+            android:layout_below="@id/username_layout">
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/name_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="@string/name"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                app:bootstrapBrand="primary"/>
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/name_label"
+                android:layout_toRightOf="@id/name_label"
+                app:bootstrapBrand="info"
+                app:bootstrapSize="md"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/sex_layout"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_card"
+            android:layout_height="70dp"
+            android:layout_below="@id/name_layout">
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/sex_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="@string/sex"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                app:bootstrapBrand="primary"/>
+
+            <com.beardedhen.androidbootstrap.BootstrapButtonGroup
+                android:id="@+id/edit_sex"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/sex_label"
+                android:layout_toRightOf="@id/sex_label"
+                app:bootstrapBrand="info"
+                app:bootstrapSize="md"
+                app:buttonMode="radio"
+                app:roundedCorners="true">
+
+                <com.beardedhen.androidbootstrap.BootstrapButton
+                    android:id="@+id/edit_sex_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:text="@string/male"
+                    app:bootstrapSize="md"
+                    app:buttonMode="radio"
+                    app:checked="true"
+                    app:roundedCorners="true" />
+
+                <com.beardedhen.androidbootstrap.BootstrapButton
+                    android:id="@+id/edit_sex_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:text="@string/female"
+                    app:bootstrapSize="md"
+                    app:buttonMode="radio"
+                    app:checked="false"
+                    app:roundedCorners="true" />
+
+
+            </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/birthday_layout"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_card"
+            android:layout_height="70dp"
+            android:layout_below="@id/sex_layout">
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/birthday_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="@string/birthday"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                app:bootstrapBrand="primary"/>
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/edit_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/tip_datapick"
+                android:inputType="date"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/birthday_label"
+                android:layout_toRightOf="@id/birthday_label"
+                app:bootstrapBrand="info"
+                app:bootstrapSize="md"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/height_layout"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_card"
+            android:layout_height="70dp"
+            android:layout_below="@id/birthday_layout">
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/height_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="@string/height"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                app:bootstrapBrand="primary"/>
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/edit_height"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/height_label"
+                android:layout_toRightOf="@id/height_label"
+                app:bootstrapBrand="info"
+                app:bootstrapSize="md"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/weight_layout"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_card"
+            android:layout_height="70dp"
+            android:layout_below="@id/height_layout">
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/weight_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="@string/weight"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                app:bootstrapBrand="primary"/>
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/edit_weight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="numberDecimal"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/weight_label"
+                android:layout_toRightOf="@id/weight_label"
+                app:bootstrapBrand="info"
+                app:bootstrapSize="md"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weight_layout"
+            android:layout_marginTop="10dp">
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/btn_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register"
+                app:bootstrapBrand="primary"
+                app:bootstrapSize="lg"
+                app:buttonMode="regular"
+                app:showOutline="false"
+                app:roundedCorners="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                app:bootstrapSize="lg"
+                app:buttonMode="regular"
+                app:showOutline="false"
+                app:roundedCorners="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
