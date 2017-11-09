@@ -32,4 +32,5 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     compile 'com.beardedhen:androidbootstrap:2.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
 }
