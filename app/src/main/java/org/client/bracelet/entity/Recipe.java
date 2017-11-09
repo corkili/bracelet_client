@@ -389,6 +389,12 @@ public class Recipe {
         return selenium;
     }
 
+    public List<Food> getFoods() {
+        List<Food> foodList = new ArrayList<>();
+        foodList.addAll(foods);
+        return foodList;
+    }
+
     @Override
     public String toString() {
         JSONObject json = new JSONObject();

@@ -6,14 +6,14 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:id="@+id/message_layout"
+        android:id="@+id/food_layout"
         android:layout_width="match_parent"
         android:background="@drawable/background_card"
         android:layout_marginTop="20dp"
         android:layout_height="70dp">
 
         <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/from"
+            android:id="@+id/food_name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
@@ -25,15 +25,15 @@
             app:bootstrapBrand="primary"/>
 
         <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/message"
+            android:id="@+id/calories"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:gravity="center_vertical"
             android:textColor="#000000"
             android:textSize="18sp"
-            android:layout_toEndOf="@id/from"
-            android:layout_toRightOf="@id/from"
+            android:layout_toEndOf="@id/food_name"
+            android:layout_toRightOf="@id/food_name"
             android:maxLines="7"/>
     </RelativeLayout>
 </FrameLayout>

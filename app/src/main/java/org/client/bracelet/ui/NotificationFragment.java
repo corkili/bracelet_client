@@ -77,16 +77,16 @@ public class NotificationFragment extends Fragment {
         }
     }
 
-    class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.MessageHoder> {
+    class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.MessageHolder> {
 
         @Override
-        public MessageHoder onCreateViewHolder(ViewGroup parent, int viewType) {
-            MessageHoder hoder = new MessageHoder(LayoutInflater.from(getActivity()).inflate(R.layout.notification_item, parent, false));
-            return hoder;
+        public MessageHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            MessageHolder holder = new MessageHolder(LayoutInflater.from(getActivity()).inflate(R.layout.notification_item, parent, false));
+            return holder;
         }
 
         @Override
-        public void onBindViewHolder(MessageHoder holder, int position) {
+        public void onBindViewHolder(MessageHolder holder, int position) {
             holder.from.setText(mDatas.get(position));
             holder.message.setText(mDatas.get(position));
         }
@@ -96,11 +96,11 @@ public class NotificationFragment extends Fragment {
             return mDatas.size();
         }
 
-        class MessageHoder extends RecyclerView.ViewHolder {
+        class MessageHolder extends RecyclerView.ViewHolder {
 
             AwesomeTextView from, message;
 
-            public MessageHoder(View itemView) {
+            public MessageHolder(View itemView) {
                 super(itemView);
                 from = ViewFindUtils.find(itemView, R.id.from);
                 message = ViewFindUtils.find(itemView, R.id.message);

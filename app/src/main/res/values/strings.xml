@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Bracelet</string>
     <string name="to_login">点此登录</string>
+    <string name="get_recipe">点此获取食谱</string>
     <string name="edit_user_info">编辑资料</string>
     <string name="edit_password">修改密码</string>
     <string name="logout">退出登录</string>
