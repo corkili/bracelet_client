@@ -14,37 +14,33 @@ import org.client.bracelet.R;
 import org.client.bracelet.utils.ViewFindUtils;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 /**
  * Created by 李浩然
- * on 2017/11/8.
+ * on 2017/11/9.
  */
 
-public class RegisterActivity extends AppCompatActivity {
+public class ModifyUserInfoActivity extends AppCompatActivity {
 
-    private BootstrapEditText phoneET, passwordET, confrimPasswordET, usernameET, nameET, weightET, heightET;
-    private BootstrapButton registerBtn, cancelBtn, birthdayBtn, maleBtn, femaleBtn;
+    private BootstrapEditText usernameET, nameET, weightET, heightET;
+    private BootstrapButton okBtn, cancelBtn, birthdayBtn, maleBtn, femaleBtn;
     private Date date;
     private SimpleDateFormat dateFormat;
     private CustomDatePicker customDatePicker;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_layout);
+        setContentView(R.layout.modify_user_info_layout);
         View v = getWindow().getDecorView();
-        phoneET = ViewFindUtils.find(v, R.id.edit_phone);
-        passwordET = ViewFindUtils.find(v, R.id.edit_password);
-        confrimPasswordET = ViewFindUtils.find(v, R.id.edit_confirm_password);
         usernameET = ViewFindUtils.find(v, R.id.edit_username);
         nameET = ViewFindUtils.find(v, R.id.edit_name);
         weightET = ViewFindUtils.find(v, R.id.edit_weight);
         heightET = ViewFindUtils.find(v, R.id.edit_height);
-        registerBtn = ViewFindUtils.find(v, R.id.btn_register);
+        okBtn = ViewFindUtils.find(v, R.id.btn_ok);
         cancelBtn = ViewFindUtils.find(v, R.id.btn_cancel);
         birthdayBtn = ViewFindUtils.find(v, R.id.edit_birthday);
         maleBtn = ViewFindUtils.find(v, R.id.edit_sex_male);
@@ -56,15 +52,15 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void setListener() {
-        registerBtn.setOnClickListener(new View.OnClickListener() {
+        okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (date != null) {
                     Toast.makeText(getApplicationContext(), maleBtn.isSelected() + " " + femaleBtn.isSelected() + " " + dateFormat.format(date), Toast.LENGTH_LONG).show();
                     Intent intent = new Intent();
-                    intent.setClass(RegisterActivity.this, LoginActivity.class);
+                    intent.setClass(ModifyUserInfoActivity.this, MainActivity.class);
                     startActivity(intent);
-                    RegisterActivity.this.finish();
+                    ModifyUserInfoActivity.this.finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "请选择生日", Toast.LENGTH_SHORT).show();
                 }
@@ -75,9 +71,9 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(RegisterActivity.this, LoginActivity.class);
+                intent.setClass(ModifyUserInfoActivity.this, MainActivity.class);
                 startActivity(intent);
-                RegisterActivity.this.finish();
+                ModifyUserInfoActivity.this.finish();
             }
         });
 

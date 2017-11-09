@@ -20,11 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.LoginActivity"
-            android:label="@string/login"/>
-
+        <activity android:name=".ui.LoginActivity" android:label="@string/login"/>
         <activity android:name=".ui.RegisterActivity" android:label="@string/register"/>
+        <activity android:name=".ui.ResetPasswordActivity" android:label="@string/reset_password"/>
+        <activity android:name=".ui.ModifyUserInfoActivity" android:label="@string/edit_user_info"/>
     </application>
 
 </manifest>

@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        vp.setCurrentItem(1);
+        vp.setCurrentItem(3);
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {

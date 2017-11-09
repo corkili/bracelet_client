@@ -16,6 +16,7 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import org.client.bracelet.R;
 import org.client.bracelet.entity.ApplicationManager;
+import org.client.bracelet.entity.User;
 import org.client.bracelet.utils.ViewFindUtils;
 
 import java.text.SimpleDateFormat;
@@ -86,6 +87,7 @@ public class SettingFragment extends Fragment {
                     Intent intent = new Intent();
                     intent.setClass(getActivity(), LoginActivity.class);
                     startActivity(intent);
+                    getActivity().finish();
                 }
             });
         }
@@ -98,12 +100,22 @@ public class SettingFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            if (v.equals(editPasswordBtn)) {
-                Toast.makeText(getActivity().getApplicationContext(), "修改密码", Toast.LENGTH_LONG).show();
-            } else if (v.equals(editUserInfoBtn)) {
-                Toast.makeText(getActivity().getApplicationContext(), "编辑资料", Toast.LENGTH_LONG).show();
-            } else if (v.equals(logoutBtn)) {
-                Toast.makeText(getActivity().getApplicationContext(), "退出登录", Toast.LENGTH_LONG).show();
+            if (v.getId() == editPasswordBtn.getId()) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), ResetPasswordActivity.class);
+                startActivity(intent);
+            } else if (v.getId() == editUserInfoBtn.getId()) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), ModifyUserInfoActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            } else if (v.getId() == logoutBtn.getId()) {
+                ApplicationManager.getInstance().isLogin(false);
+                ApplicationManager.getInstance().setUser(null);
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         }
     }
