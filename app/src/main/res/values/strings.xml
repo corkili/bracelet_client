@@ -25,6 +25,13 @@
     <string name="ok">确认</string>
     <string name="verify_code">验证码</string>
     <string name="get_verify_code">获取验证码</string>
+    <string name="steps">今日步数</string>
+    <string name="kilometre">今日步行</string>
+    <string name="sleep">昨晚睡眠</string>
+    <string name="bandBracelet">绑定设备</string>
+    <string name="refresh">刷新</string>
+    <string name="heart_rate">心率</string>
+
 
     <string name="title">请选择时间</string>
     <string name="commit">确定</string>

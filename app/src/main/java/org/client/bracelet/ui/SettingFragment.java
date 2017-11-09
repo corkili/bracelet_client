@@ -109,7 +109,6 @@ public class SettingFragment extends Fragment {
                 startActivity(intent);
                 getActivity().finish();
             } else if (v.getId() == logoutBtn.getId()) {
-                ApplicationManager.getInstance().isLogin(false);
                 ApplicationManager.getInstance().setUser(null);
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), LoginActivity.class);

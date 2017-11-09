@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "27.0.1"
-    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "org.client.bracelet"
         minSdkVersion 16
@@ -20,6 +19,10 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -33,4 +36,6 @@ dependencies {
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     compile 'com.beardedhen:androidbootstrap:2.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'cn.pedant.sweetalert:library:1.3'
+
 }

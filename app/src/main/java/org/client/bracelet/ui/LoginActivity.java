@@ -12,6 +12,7 @@ import com.beardedhen.androidbootstrap.BootstrapEditText;
 
 import org.client.bracelet.R;
 import org.client.bracelet.entity.ApplicationManager;
+import org.client.bracelet.entity.User;
 import org.client.bracelet.utils.ViewFindUtils;
 
 
@@ -52,11 +53,12 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(LoginActivity.this, ResetPasswordActivity.class);
                 startActivity(intent);
-            } else if (v.getId() ==loginBtn.getId()) {
-                ApplicationManager.getInstance().isLogin(true);
+            } else if (v.getId() == loginBtn.getId()) {
+                ApplicationManager.getInstance().setUser(new User());
                 Intent intent = new Intent();
                 intent.setClass(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
+                LoginActivity.this.finish();
             }
         }
     }

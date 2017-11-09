@@ -52,7 +52,6 @@ public class FoodFragment extends Fragment {
         if (ApplicationManager.getInstance().isLogin()) {
             if (!ApplicationManager.getInstance().hasCacheRecipe()) {
                 Toast.makeText(getActivity().getApplicationContext(), "正在获取食谱...", Toast.LENGTH_LONG).show();
-                ApplicationManager.getInstance().hasCacheRecipe(true);
                 ApplicationManager.getInstance().setRecipe(new Recipe());
             }
             v = inflater.inflate(R.layout.fragment_food, null);

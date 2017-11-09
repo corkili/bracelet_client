@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/steps_layout"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_card"
+            android:layout_marginTop="20dp"
+            android:layout_height="70dp">
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/steps_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="@string/steps"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                app:bootstrapBrand="primary"/>
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/steps"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                app:bootstrapBrand="primary" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/kilometre_layout"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_card"
+            android:layout_below="@id/steps_layout"
+            android:layout_height="70dp">
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/kilometre_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="@string/kilometre"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                app:bootstrapBrand="primary" />
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/kilometre"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                app:bootstrapBrand="primary" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/sleep_layout"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_card"
+            android:layout_below="@id/kilometre_layout"
+            android:layout_height="70dp">
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/sleep_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="@string/sleep"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                app:bootstrapBrand="primary" />
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/sleep"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                app:bootstrapBrand="primary" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@id/sleep_layout">
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/btn_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:text="@string/refresh"
+                app:bootstrapBrand="primary"
+                app:bootstrapSize="lg"
+                app:buttonMode="regular"
+                app:showOutline="false"
+                app:roundedCorners="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/btn_band_bracelet"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:text="@string/bandBracelet"
+                app:bootstrapBrand="success"
+                app:bootstrapSize="lg"
+                app:buttonMode="regular"
+                app:showOutline="false"
+                app:roundedCorners="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/btn_heart_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:text="@string/heart_rate"
+                app:bootstrapSize="lg"
+                app:buttonMode="regular"
+                app:showOutline="false"
+                app:roundedCorners="true"
+                app:bootstrapBrand="danger"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</ScrollView>

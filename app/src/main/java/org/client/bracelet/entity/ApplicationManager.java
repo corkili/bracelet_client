@@ -9,16 +9,20 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 public class ApplicationManager {
     private static ApplicationManager applicationManager;
 
-    private boolean isLogin;
     private User user;
-    private boolean hasCacheRecipe;
     private Recipe recipe;
+    private boolean hasBandBracelet;
+    private int cacheSteps;
+    private double cacheKilometre;
+    private double cacheSleep;
 
     private ApplicationManager() {
-        isLogin = false;
         user = null;
-        hasCacheRecipe = false;
         recipe = null;
+        hasBandBracelet = false;
+        cacheSteps = -1;
+        cacheKilometre = -1;
+        cacheSleep = -1;
     }
 
     public static ApplicationManager getInstance() {
@@ -29,11 +33,7 @@ public class ApplicationManager {
     }
 
     public boolean isLogin() {
-        return isLogin;
-    }
-
-    public void isLogin(boolean login) {
-        isLogin = login;
+        return user != null;
     }
 
     public User getUser() {
@@ -45,11 +45,7 @@ public class ApplicationManager {
     }
 
     public boolean hasCacheRecipe() {
-        return hasCacheRecipe;
-    }
-
-    public void hasCacheRecipe(boolean hasCacheRecipe) {
-        this.hasCacheRecipe = hasCacheRecipe;
+        return recipe != null;
     }
 
     public Recipe getRecipe() {
@@ -58,5 +54,49 @@ public class ApplicationManager {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public int getCacheSteps() {
+        return cacheSteps;
+    }
+
+    public void setCacheSteps(int cacheSteps) {
+        this.cacheSteps = cacheSteps;
+    }
+
+    public double getCacheKilometre() {
+        return cacheKilometre;
+    }
+
+    public void setCacheKilometre(double cacheKilometre) {
+        this.cacheKilometre = cacheKilometre;
+    }
+
+    public double getCacheSleep() {
+        return cacheSleep;
+    }
+
+    public void setCacheSleep(double cacheSleep) {
+        this.cacheSleep = cacheSleep;
+    }
+
+    public boolean hasBandBracelet() {
+        return hasBandBracelet;
+    }
+
+    public void hasBandBracelet(boolean hasBandBracelet) {
+        this.hasBandBracelet = hasBandBracelet;
+    }
+
+    public boolean hasCacheSteps() {
+        return cacheSteps >= 0;
+    }
+
+    public boolean hasCacheKilometre() {
+        return cacheKilometre >= 0;
+    }
+
+    public boolean hasCacheSleep() {
+        return cacheSleep > 0;
     }
 }
