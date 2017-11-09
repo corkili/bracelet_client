@@ -75,9 +75,12 @@ public class User {
 
     private List<User> friends;
 
+    private List<Message> messages;
+
     public User() {
         this.likeFoods = new ArrayList<>();
         this.friends = new ArrayList<>();
+        this.messages = new ArrayList<>();
         this.weight = 0.0;
         this.height = 0.0;
         this.age = 0;
@@ -115,6 +118,11 @@ public class User {
                 user.setAge(friend.getInt("age"));
                 user.setPhone(friend.getString("phone"));
                 friends.add(user);
+            }
+            this.messages = new ArrayList<>();
+            JSONArray messageArray = json.getJSONArray("messages");
+            for (int i = 0; i < messageArray.length(); i++) {
+                messages.add(new Message(messageArray.getJSONObject(i).toString()));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -233,6 +241,14 @@ public class User {
         this.friends = friends;
     }
 
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
     @Override
     public String toString() {
         JSONObject json = new JSONObject();
@@ -267,6 +283,12 @@ public class User {
                 friendArray.put(u);
             }
             json.put("friends", friendArray);
+
+            JSONArray messageArray = new JSONArray();
+            for (Message message : messages) {
+                messageArray.put(new JSONObject(message.toString()));
+            }
+            json.put("messages", messageArray);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -276,27 +298,32 @@ public class User {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         User user = (User) o;
 
         if (id != null ? !id.equals(user.id) : user.id != null) return false;
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (username != null ? !username.equals(user.username) : user.username != null)
+            return false;
+        if (password != null ? !password.equals(user.password) : user.password != null)
+            return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (sex != null ? !sex.equals(user.sex) : user.sex != null) return false;
-        if (birthday != null ? !birthday.equals(user.birthday) : user.birthday != null) return false;
+        if (birthday != null ? !birthday.equals(user.birthday) : user.birthday != null)
+            return false;
         if (age != null ? !age.equals(user.age) : user.age != null) return false;
         if (weight != null ? !weight.equals(user.weight) : user.weight != null) return false;
         if (height != null ? !height.equals(user.height) : user.height != null) return false;
         if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
-        if (registerTime != null ? !registerTime.equals(user.registerTime) : user.registerTime != null) return false;
+        if (registerTime != null ? !registerTime.equals(user.registerTime) : user.registerTime != null)
+            return false;
         if (lastLoginTime != null ? !lastLoginTime.equals(user.lastLoginTime) : user.lastLoginTime != null)
             return false;
-        if (likeFoods != null ? !likeFoods.equals(user.likeFoods) : user.likeFoods != null) return false;
+        if (likeFoods != null ? !likeFoods.equals(user.likeFoods) : user.likeFoods != null)
+            return false;
         if (friends != null ? !friends.equals(user.friends) : user.friends != null) return false;
+        return messages != null ? messages.equals(user.messages) : user.messages == null;
 
-        return true;
     }
 
     @Override
@@ -315,6 +342,7 @@ public class User {
         result = 31 * result + (lastLoginTime != null ? lastLoginTime.hashCode() : 0);
         result = 31 * result + (likeFoods != null ? likeFoods.hashCode() : 0);
         result = 31 * result + (friends != null ? friends.hashCode() : 0);
+        result = 31 * result + (messages != null ? messages.hashCode() : 0);
         return result;
     }
 }
