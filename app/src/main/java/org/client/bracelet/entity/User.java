@@ -95,6 +95,7 @@ public class User {
             this.name = json.getString("name");
             this.birthday = new Date(json.getLong("birthday"));
             this.age = json.getInt("age");
+            this.sex = json.getString("sex");
             this.weight = json.getDouble("weight");
             this.height = json.getDouble("height");
             this.phone = json.getString("phone");

@@ -1,7 +1,10 @@
 package org.client.bracelet.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,12 +14,22 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.BootstrapEditText;
 
 import org.client.bracelet.R;
+import org.client.bracelet.entity.ApplicationManager;
+import org.client.bracelet.entity.MessageCode;
+import org.client.bracelet.entity.ResponseCode;
+import org.client.bracelet.entity.User;
 import org.client.bracelet.utils.ViewFindUtils;
+import org.client.bracelet.utils.Webservice;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.Objects;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by 李浩然
@@ -30,6 +43,11 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
     private Date date;
     private SimpleDateFormat dateFormat;
     private CustomDatePicker customDatePicker;
+    private SweetAlertDialog pDialog;
+    private JSONObject result;
+    private ApplicationManager manager;
+    private boolean isChanged;
+    private User modifiedUser;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,21 +67,29 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
         setListener();
         date = null;
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        manager = ApplicationManager.getInstance();
+        User user = manager.getUser();
+        usernameET.setText(user.getUsername());
+        nameET.setText(user.getName());
+        heightET.setText(String.valueOf(user.getHeight()));
+        weightET.setText(String.valueOf(user.getWeight()));
+        if ("男".equals(user.getSex())) {
+            maleBtn.setSelected(true);
+            femaleBtn.setSelected(false);
+        } else {
+            maleBtn.setSelected(false);
+            femaleBtn.setSelected(true);
+        }
+        date = user.getBirthday();
+        birthdayBtn.setText(dateFormat.format(date));
+        isChanged = false;
     }
 
     private void setListener() {
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (date != null) {
-                    Toast.makeText(getApplicationContext(), maleBtn.isSelected() + " " + femaleBtn.isSelected() + " " + dateFormat.format(date), Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent();
-                    intent.setClass(ModifyUserInfoActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    ModifyUserInfoActivity.this.finish();
-                } else {
-                    Toast.makeText(getApplicationContext(), "请选择生日", Toast.LENGTH_SHORT).show();
-                }
+                modifyUserInfo();
             }
         });
 
@@ -111,4 +137,170 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
         customDatePicker.setIsLoop(false); // 不允许循环滚动
 
     }
+
+    private void modifyUserInfo() {
+        SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE);
+        dialog.setTitleText("错误信息");
+
+        String username = usernameET.getText().toString().trim();
+        if (username.isEmpty()) {
+            dialog.setContentText("用户名不能为空").show();
+            return;
+        }
+
+        String name = nameET.getText().toString().trim();
+        if (name.isEmpty()) {
+            dialog.setContentText("姓名不能为空").show();
+            return;
+        }
+
+        if (date == null) {
+            dialog.setContentText("请选择出生日期").show();
+            return;
+        }
+
+        Double height = 0.0;
+
+        try{
+            height = Double.parseDouble(heightET.getText().toString().trim());
+            if (height < 30 || height > 300) {
+                dialog.setContentText("身高范围应在30cm至300cm之间").show();
+                return;
+            }
+        } catch (NumberFormatException e) {
+            dialog.setContentText("身高范围应在30cm至300cm之间").show();
+            return;
+        }
+
+        Double weight = 0.0;
+
+        try{
+            weight = Double.parseDouble(weightET.getText().toString().trim());
+            if (weight < 5 || height > 400) {
+                dialog.setContentText("体重范围应在5公斤至400公斤之间").show();
+                return;
+            }
+        } catch (NumberFormatException e) {
+            dialog.setContentText("体重范围应在5公斤至400公斤之间").show();
+            return;
+        }
+
+        String sex = maleBtn.isSelected() ? "男" : "女";
+
+        User user = manager.getUser();
+        modifiedUser = new User(user.toString());
+
+        if (!username.equals(user.getUsername())) {
+            modifiedUser.setUsername(username);
+            isChanged = true;
+        }
+        if (!name.equals(user.getName())) {
+            modifiedUser.setName(name);
+            isChanged = true;
+        }
+        if (!sex.equals(user.getSex())) {
+            modifiedUser.setSex(sex);
+            isChanged = true;
+        }
+        if (!dateFormat.format(date).equals(dateFormat.format(user.getBirthday()))) {
+            modifiedUser.setBirthday(new java.sql.Date(date.getTime()));
+            isChanged = true;
+        }
+        if (!height.equals(user.getHeight())) {
+            modifiedUser.setHeight(height);
+            isChanged = true;
+        }
+        if (!weight.equals(user.getWeight())) {
+            modifiedUser.setWeight(weight);
+            isChanged = true;
+        }
+
+        if (isChanged) {
+            pDialog = new SweetAlertDialog(ModifyUserInfoActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            pDialog.setTitleText("正在请求修改信息");
+            pDialog.setCancelable(false);
+            pDialog.show();
+            new Thread(modifyUserInfoRequest).start();
+        } else {
+            Toast.makeText(getApplicationContext(), "没有修改任何信息", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent();
+            intent.setClass(ModifyUserInfoActivity.this, MainActivity.class);
+            startActivity(intent);
+            ModifyUserInfoActivity.this.finish();
+        }
+    }
+
+    Runnable modifyUserInfoRequest = new Runnable() {
+        @Override
+        public void run() {
+            android.os.Message msg = new android.os.Message();
+            result = Webservice.modifyUserInformation(modifiedUser);
+            int resCode;
+            try {
+                if (result != null) {
+                    resCode = result.getInt("resCode");
+                } else {
+                    resCode = MessageCode.MSG_REQUEST_ERROR;
+                }
+            } catch (JSONException e) {
+                resCode = MessageCode.MSG_REQUEST_ERROR;
+            }
+            if (resCode == MessageCode.MSG_REQUEST_ERROR) {
+                msg.what = MessageCode.MSG_REQUEST_ERROR;
+            } else if (resCode == ResponseCode.SUCCESSFUL) {
+                msg.what = MessageCode.MSG_REQUEST_SUCCESSFUL;
+            } else if (resCode == ResponseCode.NO_LOGIN) {
+                msg.what = MessageCode.MSG_NO_LOGIN;
+            } else {
+                msg.what = MessageCode.MSG_REQUEST_EXCEPTION;
+            }
+            handler.sendMessage(msg);
+        }
+    };
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(android.os.Message msg){
+            super.handleMessage(msg);
+            pDialog.dismissWithAnimation();
+            switch (msg.what) {
+                case MessageCode.MSG_REQUEST_SUCCESSFUL: {
+                    try {
+                        manager.setUser(new User(result.getJSONObject("user").toString()));
+                        Intent intent = new Intent();
+                        intent.setClass(ModifyUserInfoActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        ModifyUserInfoActivity.this.finish();
+                    } catch (JSONException e) {
+                        pDialog = new SweetAlertDialog(ModifyUserInfoActivity.this, SweetAlertDialog.ERROR_TYPE);
+                        pDialog.setTitleText("错误提示");
+                        pDialog.setContentText("客户端异常");
+                        break;
+                    }
+                    break;
+                }
+                case MessageCode.MSG_REQUEST_ERROR: {
+                    pDialog = new SweetAlertDialog(ModifyUserInfoActivity.this, SweetAlertDialog.ERROR_TYPE);
+                    pDialog.setTitleText("错误提示");
+                    pDialog.setContentText("网络请求错误，请检查网络设置");
+                    break;
+                }
+                case MessageCode.MSG_REQUEST_EXCEPTION: {
+                    String resMsg;
+                    try {
+                        resMsg = result.getString("resMsg");
+                    } catch (JSONException e) {
+                        resMsg = "未知错误，请重试";
+                    }
+                    pDialog = new SweetAlertDialog(ModifyUserInfoActivity.this, SweetAlertDialog.ERROR_TYPE);
+                    pDialog.setTitleText("异常提示");
+                    pDialog.setContentText(resMsg);
+                    break;
+                }
+            }
+            pDialog.show();
+            result = null;
+        }
+    };
 }

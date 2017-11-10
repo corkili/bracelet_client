@@ -399,10 +399,10 @@ public class Recipe {
     public String toString() {
         JSONObject json = new JSONObject();
         JSONArray foodArray = new JSONArray();
-        for (Food food : foods) {
-            foodArray.put(food.toString());
-        }
         try {
+            for (Food food : foods) {
+                foodArray.put(new JSONObject(food.toString()));
+            }
             json.put("foods", foodArray);
             json.put("water", water);
             json.put("size", foods.size());

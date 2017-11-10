@@ -2,6 +2,7 @@ package org.client.bracelet.entity;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,16 +13,19 @@ import java.util.List;
 public class ApplicationManager {
     private static ApplicationManager applicationManager;
 
+    private boolean isLogin;
     private User user;
     private Recipe recipe;
     private boolean hasBandBracelet;
     private int cacheSteps;
     private double cacheKilometre;
     private double cacheSleep;
+    private Date lastCacheRecipeTime;
 
     private List<FoodType> cacheFoodTypes;
 
     private ApplicationManager() {
+        isLogin = false;
         user = null;
         recipe = null;
         hasBandBracelet = false;
@@ -29,13 +33,6 @@ public class ApplicationManager {
         cacheKilometre = -1;
         cacheSleep = -1;
         cacheFoodTypes = new ArrayList<>();
-        String[] names = {"谷类", "酒类", "面食", "甜品", "饮料", "豆制品", "瘦肉", "肥肉"};
-        for (int i = 0; i < 21; i++) {
-            FoodType foodType = new FoodType();
-            foodType.setId((long)i + 1);
-            foodType.setName(String.valueOf(i + 1));
-            cacheFoodTypes.add(foodType);
-        }
     }
 
     public static ApplicationManager getInstance() {
@@ -46,7 +43,11 @@ public class ApplicationManager {
     }
 
     public boolean isLogin() {
-        return user != null;
+        return isLogin;
+    }
+
+    public void isLogin(boolean login) {
+        isLogin = login;
     }
 
     public User getUser() {
@@ -123,5 +124,22 @@ public class ApplicationManager {
 
     public boolean hasCacheFoodTypes() {
         return !cacheFoodTypes.isEmpty();
+    }
+
+    public void updateLastCacheRecipeTime() {
+        this.lastCacheRecipeTime = new Date(System.currentTimeMillis());
+    }
+
+    public boolean needRefreshRecipe() {
+        Date now = new Date(System.currentTimeMillis());
+        return lastCacheRecipeTime.before(now);
+    }
+
+    public Date getLastCacheRecipeTime() {
+        return lastCacheRecipeTime;
+    }
+
+    public void setLastCacheRecipeTime(Date lastCacheRecipeTime) {
+        this.lastCacheRecipeTime = lastCacheRecipeTime;
     }
 }

@@ -14,7 +14,7 @@
 
         <com.beardedhen.androidbootstrap.AwesomeTextView
             android:id="@+id/from"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:gravity="center_vertical"

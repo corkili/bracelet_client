@@ -206,7 +206,7 @@
             android:layout_width="match_parent"
             android:background="@drawable/background_card"
             android:layout_below="@id/weight_layout"
-            android:layout_height="70dp">
+            android:layout_height="wrap_content">
             <com.beardedhen.androidbootstrap.AwesomeTextView
                 android:id="@+id/like_foods_label"
                 android:layout_width="wrap_content"
@@ -230,6 +230,8 @@
                 android:textSize="18sp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_toEndOf="@id/like_foods_label"
+                android:layout_toRightOf="@id/like_foods_label"
                 app:bootstrapBrand="primary" />
         </RelativeLayout>
 

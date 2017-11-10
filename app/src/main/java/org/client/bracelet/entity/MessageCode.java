@@ -8,4 +8,5 @@ public abstract class MessageCode {
     public static final int MSG_REQUEST_SUCCESSFUL = 100;
     public static final int MSG_REQUEST_ERROR = 101;
     public static final int MSG_REQUEST_EXCEPTION = 102;
+    public static final int MSG_NO_LOGIN = 103;
 }

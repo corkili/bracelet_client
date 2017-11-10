@@ -222,6 +222,8 @@ public class RegisterActivity extends AppCompatActivity {
                 msg.what = MessageCode.MSG_REQUEST_ERROR;
             } else if (resCode == ResponseCode.SUCCESSFUL) {
                 msg.what = MessageCode.MSG_REQUEST_SUCCESSFUL;
+            } else if (resCode == ResponseCode.NO_LOGIN) {
+                msg.what = MessageCode.MSG_NO_LOGIN;
             } else {
                 msg.what = MessageCode.MSG_REQUEST_EXCEPTION;
             }
@@ -270,6 +272,8 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
             pDialog.show();
+            result = null;
         }
     };
+
 }

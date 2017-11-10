@@ -3,48 +3,52 @@ package org.client.bracelet.utils;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreConnectionPNames;
-import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.List;
 
 public class HttpUtils {
 
     private static int HTTP_OK = 200;
 
+    public static String JSESSIONID = null;
 
     public static String postRequest(String url, String jsonString) {
         try {
             System.out.println(url);
             System.out.println(jsonString);
+            System.out.println(JSESSIONID);
             HttpClient httpClient = new DefaultHttpClient();
             HttpPost post = new HttpPost(url);
             post.setEntity(new StringEntity(jsonString, "UTF-8"));
             post.addHeader("User-Agent", "");
+            if (JSESSIONID != null) {
+                post.setHeader("Cookie", "JSESSIONID=" + JSESSIONID);
+            }
             HttpParams httpParams = post.getParams();
             httpParams.setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 10000);
             httpParams.setParameter(CoreConnectionPNames.SO_TIMEOUT, 10000);
             HttpResponse httpResponse = httpClient.execute(post);
             HttpEntity httpEntity = httpResponse.getEntity();
-            System.out.println(httpEntity);
             if (httpEntity != null) {
                 String result = EntityUtils.toString(httpEntity, "UTF-8");
+                CookieStore cookieStore = ((DefaultHttpClient)httpClient).getCookieStore();
+                List<Cookie> cookies = cookieStore.getCookies();
+                for (Cookie cookie : cookies) {
+                    if ("JSESSIONID".equals(cookie.getName())) {
+                        JSESSIONID = cookie.getValue();
+                        break;
+                    }
+                }
                 System.out.println(result);
                 return result;
             } else {

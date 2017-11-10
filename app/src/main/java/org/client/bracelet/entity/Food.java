@@ -177,6 +177,8 @@ public class Food {
     public Food(String jsonString) {
         try {
             JSONObject json = new JSONObject(jsonString);
+            this.id = json.getLong("id");
+            this.name = json.getString("name");
             this.heatContent = json.getDouble("heatContent");
             this.thiamine = json.getDouble("thiamine");
             this.calcium = json.getDouble("calcium");

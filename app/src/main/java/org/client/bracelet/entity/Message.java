@@ -1,12 +1,14 @@
 package org.client.bracelet.entity;
 
+import android.support.annotation.NonNull;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Date;
 
 
-public class Message {
+public class Message implements Comparable<Message> {
 
     private Long id;
 
@@ -136,5 +138,16 @@ public class Message {
         result = 31 * result + (fromUserPhone != null ? fromUserPhone.hashCode() : 0);
         result = 31 * result + (time != null ? time.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(@NonNull Message o) {
+        if (time.getTime() < o.getTime().getTime()) {
+            return -1;
+        } else if (time.getTime() > o.getTime().getTime()){
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
