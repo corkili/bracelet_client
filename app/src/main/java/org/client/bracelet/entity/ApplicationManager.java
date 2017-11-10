@@ -2,6 +2,9 @@ package org.client.bracelet.entity;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by 李浩然 on 2017/11/8.
  */
@@ -16,6 +19,8 @@ public class ApplicationManager {
     private double cacheKilometre;
     private double cacheSleep;
 
+    private List<FoodType> cacheFoodTypes;
+
     private ApplicationManager() {
         user = null;
         recipe = null;
@@ -23,6 +28,14 @@ public class ApplicationManager {
         cacheSteps = -1;
         cacheKilometre = -1;
         cacheSleep = -1;
+        cacheFoodTypes = new ArrayList<>();
+        String[] names = {"谷类", "酒类", "面食", "甜品", "饮料", "豆制品", "瘦肉", "肥肉"};
+        for (int i = 0; i < 21; i++) {
+            FoodType foodType = new FoodType();
+            foodType.setId((long)i + 1);
+            foodType.setName(String.valueOf(i + 1));
+            cacheFoodTypes.add(foodType);
+        }
     }
 
     public static ApplicationManager getInstance() {
@@ -98,5 +111,17 @@ public class ApplicationManager {
 
     public boolean hasCacheSleep() {
         return cacheSleep > 0;
+    }
+
+    public List<FoodType> getCacheFoodTypes() {
+        return cacheFoodTypes;
+    }
+
+    public void setCacheFoodTypes(List<FoodType> cacheFoodTypes) {
+        this.cacheFoodTypes = cacheFoodTypes;
+    }
+
+    public boolean hasCacheFoodTypes() {
+        return !cacheFoodTypes.isEmpty();
     }
 }

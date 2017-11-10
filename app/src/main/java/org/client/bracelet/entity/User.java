@@ -256,6 +256,7 @@ public class User {
             json.put("id", id)
                     .put("username", username)
                     .put("name", name)
+                    .put("password", password)
                     .put("sex", sex)
                     .put("birthday", birthday.getTime())
                     .put("age", age)
