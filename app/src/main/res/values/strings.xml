@@ -32,6 +32,8 @@
     <string name="refresh">刷新</string>
     <string name="heart_rate">心率</string>
     <string name="like_foods">饮食偏好</string>
+    <string name="add_friend">添加好友</string>
+    <string name="friend_phone_hint">请输入要添加好友的手机号</string>
 
 
     <string name="title">请选择时间</string>

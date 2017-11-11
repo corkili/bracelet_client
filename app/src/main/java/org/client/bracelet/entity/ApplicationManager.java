@@ -21,6 +21,7 @@ public class ApplicationManager {
     private double cacheKilometre;
     private double cacheSleep;
     private Date lastCacheRecipeTime;
+    private boolean recipeReasonHasModified;
 
     private List<FoodType> cacheFoodTypes;
 
@@ -32,6 +33,7 @@ public class ApplicationManager {
         cacheSteps = -1;
         cacheKilometre = -1;
         cacheSleep = -1;
+        recipeReasonHasModified = false;
         cacheFoodTypes = new ArrayList<>();
     }
 
@@ -132,7 +134,7 @@ public class ApplicationManager {
 
     public boolean needRefreshRecipe() {
         Date now = new Date(System.currentTimeMillis());
-        return lastCacheRecipeTime.before(now);
+        return lastCacheRecipeTime.before(now) || recipeReasonHasModified;
     }
 
     public Date getLastCacheRecipeTime() {
@@ -141,5 +143,9 @@ public class ApplicationManager {
 
     public void setLastCacheRecipeTime(Date lastCacheRecipeTime) {
         this.lastCacheRecipeTime = lastCacheRecipeTime;
+    }
+
+    public void recipeReasonHasModified(boolean recipeReasonHasModified) {
+        this.recipeReasonHasModified = recipeReasonHasModified;
     }
 }

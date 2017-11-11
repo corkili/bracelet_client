@@ -1,5 +1,6 @@
 package org.client.bracelet.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -46,7 +47,7 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
     private SweetAlertDialog pDialog;
     private JSONObject result;
     private ApplicationManager manager;
-    private boolean isChanged;
+    private boolean isChanged, isRecipeReasonChanged;
     private User modifiedUser;
 
     @Override
@@ -201,18 +202,22 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
         if (!sex.equals(user.getSex())) {
             modifiedUser.setSex(sex);
             isChanged = true;
+            isRecipeReasonChanged = true;
         }
         if (!dateFormat.format(date).equals(dateFormat.format(user.getBirthday()))) {
             modifiedUser.setBirthday(new java.sql.Date(date.getTime()));
             isChanged = true;
+            isRecipeReasonChanged = true;
         }
         if (!height.equals(user.getHeight())) {
             modifiedUser.setHeight(height);
             isChanged = true;
+            isRecipeReasonChanged = true;
         }
         if (!weight.equals(user.getWeight())) {
             modifiedUser.setWeight(weight);
             isChanged = true;
+            isRecipeReasonChanged = true;
         }
 
         if (isChanged) {
@@ -268,6 +273,13 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
                 case MessageCode.MSG_REQUEST_SUCCESSFUL: {
                     try {
                         manager.setUser(new User(result.getJSONObject("user").toString()));
+                        if (isRecipeReasonChanged) {
+                            manager.recipeReasonHasModified(true);
+                            SharedPreferences sharedPreferences = getSharedPreferences("user_data", Activity.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean("recipeReasonHasModified", true);
+                            editor.apply();
+                        }
                         Intent intent = new Intent();
                         intent.setClass(ModifyUserInfoActivity.this, MainActivity.class);
                         startActivity(intent);

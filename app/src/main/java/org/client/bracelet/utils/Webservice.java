@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 public class Webservice {
 
-    private static final String BASE_URL = "http://118.114.42.222:8080";
+    private static final String BASE_URL = "http://118.114.42.20:8080";
 
     private static final String registerUrl = BASE_URL + "/user/register";
 
@@ -116,6 +116,21 @@ public class Webservice {
 
     public static JSONObject refreshRecipe() {
         String result = HttpUtils.postRequest(refreshRecipeUrl, "");
+        try {
+            return new JSONObject(result);
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
+    public static JSONObject addFriend(String userPhone) {
+        JSONObject params = new JSONObject();
+        try {
+            params.put("phone", userPhone);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String result = HttpUtils.postRequest(addFriendUrl, params.toString());
         try {
             return new JSONObject(result);
         } catch (JSONException e) {

@@ -77,6 +77,7 @@ public class SettingFragment extends Fragment {
         sharedPreferences = getActivity().getSharedPreferences("user_data", Activity.MODE_PRIVATE);
         List<FoodType> foodTypes = new ArrayList<>();
         Set<String> foodTypeJsons = sharedPreferences.getStringSet("foodTypes", new HashSet<String>());
+        manager.recipeReasonHasModified(sharedPreferences.getBoolean("recipeReasonHasModified", false));
         for (String foodTypeJson : foodTypeJsons) {
             foodTypes.add(new FoodType(foodTypeJson));
         }
@@ -359,6 +360,10 @@ public class SettingFragment extends Fragment {
                         } else {
                             likeFoodsStr = "无";
                         }
+                        editor = sharedPreferences.edit();
+                        manager.recipeReasonHasModified(true);
+                        editor.putBoolean("recipeReasonHasModified", true);
+                        editor.apply();
                         likeFoodsTV.setText(likeFoodsStr);
                     } catch (JSONException e) {
                         pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.ERROR_TYPE);

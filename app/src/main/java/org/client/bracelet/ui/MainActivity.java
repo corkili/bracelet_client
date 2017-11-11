@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Fragment> mFragments;
     private boolean[] fragmentUpdates;
-    private String[] mTitles = {"运动", "膳食", "通知", "设置"};
+    private String[] mTitles = {"运动", "膳食", "通知", "好友", "设置"};
     private View mDecorView;
     private SegmentTabLayout mTabLayout;
 
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         mFragments.add(SportFragment.getInstance());
         mFragments.add(FoodFragment.getInstance());
         mFragments.add(NotificationFragment.getInstance());
+        mFragments.add(FriendFragment.getInstance());
         mFragments.add(SettingFragment.getInstance());
 
         fragmentUpdates = new boolean[mFragments.size()];
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        vp.setCurrentItem(3);
+        vp.setCurrentItem(mFragments.size() - 1);
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {
