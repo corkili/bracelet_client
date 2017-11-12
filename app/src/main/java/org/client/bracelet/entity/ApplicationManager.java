@@ -1,5 +1,8 @@
 package org.client.bracelet.entity;
 
+import android.bluetooth.BluetoothDevice;
+import android.util.Pair;
+
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import java.sql.Date;
@@ -22,6 +25,11 @@ public class ApplicationManager {
     private double cacheSleep;
     private Date lastCacheRecipeTime;
     private boolean recipeReasonHasModified;
+    private int steps;
+    private double kilometres, sleepTime;
+    private java.util.Date lastUpdateStateTime;
+    private Pair<Long, Long> timePair;
+    private long lastSleepTimes;
 
     private List<FoodType> cacheFoodTypes;
 
@@ -34,6 +42,9 @@ public class ApplicationManager {
         cacheKilometre = -1;
         cacheSleep = -1;
         recipeReasonHasModified = false;
+        steps = 0;
+        kilometres = 0;
+        sleepTime = 0;
         cacheFoodTypes = new ArrayList<>();
     }
 
@@ -147,5 +158,53 @@ public class ApplicationManager {
 
     public void recipeReasonHasModified(boolean recipeReasonHasModified) {
         this.recipeReasonHasModified = recipeReasonHasModified;
+    }
+
+    public int getSteps() {
+        return steps;
+    }
+
+    public void setSteps(int steps) {
+        this.steps = steps;
+    }
+
+    public double getKilometres() {
+        return kilometres;
+    }
+
+    public void setKilometres(double kilometres) {
+        this.kilometres = kilometres;
+    }
+
+    public java.util.Date getLastUpdateStateTime() {
+        return lastUpdateStateTime;
+    }
+
+    public void setLastUpdateStateTime(java.util.Date lastUpdateStateTime) {
+        this.lastUpdateStateTime = lastUpdateStateTime;
+    }
+
+    public Pair<Long, Long> getTimePair() {
+        return timePair;
+    }
+
+    public void setTimePair(Pair<Long, Long> timePair) {
+        this.timePair = timePair;
+    }
+
+    public long getLastSleepTimes() {
+        return lastSleepTimes;
+    }
+
+    public void setLastSleepTimes(long lastSleepTimes) {
+        this.lastSleepTimes = lastSleepTimes;
+    }
+
+    public double getSleepTime() {
+        return sleepTime;
+    }
+
+    public void setSleepTime(double sleepTime) {
+        this.sleepTime = sleepTime;
     }
 }

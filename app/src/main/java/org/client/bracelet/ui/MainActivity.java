@@ -104,34 +104,5 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             return mFragments.get(position % mFragments.size());
         }
-
-//        @Override
-//        public Object instantiateItem(ViewGroup container, int position) {
-//            //得到缓存的fragment
-//            Fragment fragment = (Fragment) super.instantiateItem(container, position);
-//            //得到tag，这点很重要
-//            String fragmentTag = fragment.getTag();
-//
-//
-////            if (fragmentUpdates[position]) {
-//                //如果这个fragment需要更新
-//
-//            FragmentTransaction ft = fm.beginTransaction();
-//            //移除旧的fragment
-//            ft.remove(fragment);
-//            //换成新的fragment
-//            fragment = mFragments.get(position);
-//            //添加新fragment时必须用前面获得的tag，这点很重要
-//            ft.add(container.getId(), fragment, fragmentTag);
-//            ft.attach(fragment);
-//            ft.commit();
-//
-//            //复位更新标志
-//            fragmentUpdates[position] = false;
-////            }
-//
-//
-//            return fragment;
-//        }
     }
 }

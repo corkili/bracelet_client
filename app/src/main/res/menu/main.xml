@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="kr.re.Dev.Bluetooth.MainActivity">
+
+    <item
+        android:id="@+id/action_connect"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="@string/action_connect"/>
+    
+     <item
+        android:id="@+id/action_code"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="@string/action_arduinocode"/>
+
+</menu>

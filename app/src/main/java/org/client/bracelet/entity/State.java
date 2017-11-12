@@ -41,7 +41,9 @@ public class State {
     public State(String jsonString, User user) {
         try {
             JSONObject json = new JSONObject(jsonString);
-            this.id = json.getLong("id");
+            if (json.has("id")) {
+                this.id = json.getLong("id");
+            }
             this.startTime = new Date(json.getLong("startTime"));
             this.endTime = new Date(json.getLong("endTime"));
             this.status = json.getString("status");
@@ -95,10 +97,12 @@ public class State {
     public String toString() {
         JSONObject json = new JSONObject();
         try {
-            json.put("id", id)
-                    .put("startTime", startTime.getTime())
+            json.put("startTime", startTime.getTime())
                     .put("endTime", endTime.getTime())
                     .put("status", status);
+            if (id != null) {
+                json.put("id", id);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
